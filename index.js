@@ -3,7 +3,11 @@ require("dotenv").config();
 const client = new Client();
 
 client.on("ready", () => {
-  client.user.createFriendInvite().then(console.log).catch(console.error);
+  client.user.createFriendInvite().then((invite) => {
+    const inviteCode = invite.code;
+    const maxAge = invite.maxAge;
+    console.log("invite code: " + inviteCode + " \nmax age: " + maxAge);
+  });
 });
 
 client.login(process.env.TOKEN);
